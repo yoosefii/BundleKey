@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+
+{%block head%}
+    <title>BundleKey | Feed</title>
+{%endblock%}
+
+{%block main_content%}
+    <div class="posts-container">
+        {%if not posts%}
+        <h2>No posts yet... sorry</h2>
+        {%else%}
+            {%for post, time_ago in posts%}
+            <div class="post-div">
+                <div class="first-row">
+                    <span class="icon"><i class="fa-solid fa-user"></i></span>
+                    <span class="username">{{post.poster_username}}</span>
+                    <span class="published">• {{time_ago}}</span>
+                    {%if current_user.username == post.poster_username%}
+                    <div class="options" tabindex="0">⋮
+                        <div class="drop-down-menu">
+                            <a href="{{url_for('edit_post', post_id=post.id)}}" class="option">Edit</a>
+                            <a href="{{url_for('delete_post', post_id=post.id)}}" class="option">Delete</a>
+                        </div>
+                    </div>
+                    {%endif%}
+                </div>
+                <div class="content">{{post.content}}</div>
+                <div class="interactions"></div>
+            </div>
+            {%endfor%}
+        {%endif%}
+    </div>
+{%endblock%}
+
+{%block side_content%}
+
+{%endblock%}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lobster&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b7ec4653cf.js" crossorigin="anonymous"></script>
+    {%block head%}{%endblock%}
+</head>
+<body class="">
+    <div class="container">
+        <div class="navigation-section">
+            <div class="logo"><a href="" class="lobster-regular">Bundle<br>Key</a></div>
+            <div class="links">
+                <div><a href="/" class="home"><i class="fa-solid fa-house"></i></a></div>
+                <div><a href="{{url_for('feed')}}" class="discover"><i class="fa-solid fa-compass"></i></a></div>
+                <div><a href=""><i class="fa-solid fa-user-group"></i></a></div>
+                <div class="user"><a href="{{url_for('dashboard')}}"><i class="fa-solid fa-user"></i></a></div>
+            </div>
+            <div class="settings">
+                <div class="options" tabindex="0"> <i class="fa-solid fa-bars"></i>
+                        <div class="drop-down-menu">
+                            <a class="option" onclick="toggleTheme()">Dark/Light</a>
+                            <a class="option" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Settings</a>
+                            <script>
+                                function toggleTheme() {
+                                    document.body.classList.toggle('light');
+                                    localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark')
+                                }
+                                if (localStorage.getItem('theme') == 'light') {
+                                    document.body.classList.add('light')
+                                }
+                            </script>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="tools-section">
+            <div class="search-bar">
+                <input type="text" class="lato-black">
+                <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
+            </div>
+            <a href="{{url_for('post')}}"><i class="fa-solid fa-circle-plus"></i></a>
+        </div>
+        <div class="main-content">
+            {%block main_content%}
+            {%endblock%}
+        </div>
+        <div class="side-content">
+            {%block side_content%}
+            {%endblock%}
+        </div>
+    </div>
+</body>
+</html>
