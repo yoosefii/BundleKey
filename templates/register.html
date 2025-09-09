@@ -1,15 +1,21 @@
 {%extends 'base.html'%}
 
 {%block head%}
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../static/loginStyle.css">
 {%endblock%}
 
 
 {%block main_content%}
     <form action="" method="POST">
+        <h1 class="title">Signup here</h1>
         {{form.hidden_tag()}}
-        {{form.username}}
-        {{form.password}}
-        {{form.submit}}
+        <label for="username" class="username-label">Choose a username: </label>
+        {{form.username(class="username", id="username")}}
+        <label for="password" class="password-label">Choose a password: </label>
+        {{form.password(class="password", id="password")}}
+        {{form.submit(class="submit")}}
+        <h2 class="link">Alerady have an account? <a href="{{url_for('login')}}">Log In</a></h2>
     </form>
 {%endblock%}
 

@@ -1,6 +1,7 @@
 :root {
   --dark-bg: hsl(0, 0%, 0%);
   --bg: hsl(0, 0%, 5%);
+  --even-lighter-bg: hsl(0, 0%, 25%);
   --lighter-bg: hsl(0, 0%, 17%);
   --light-bg: hsl(0, 0%, 10%);
   --text: hsl(0, 0%, 95%);
@@ -14,6 +15,7 @@ body.light {
   --bg: hsl(0, 0%, 95%);
   --light-bg: hsl(0, 0%, 100%);
   --lighter-bg: white;
+  --even-lighter-bg: hsl(0, 0%, 75%);
   --text: hsl(0, 0%, 5%);
   --text-muted: hsl(0, 0%, 30%);
   --border: hsl(0, 0%, 60%);
@@ -85,6 +87,7 @@ body a, body i {
   height: 50%;
   display: flex;
   align-items: center;
+  font-size: 1.2em;
 }
 .navigation-section .links {
   height: 100%;
@@ -151,6 +154,9 @@ body a, body i {
   padding: 2px 15px;
   border-bottom: 2px solid var(--border);
 }
+.tools-section .add i {
+  font-size: 26px;
+}
 .tools-section .search-bar {
   border: var(--border) solid;
   border-radius: 17px;
@@ -177,31 +183,34 @@ body a, body i {
 }
 
 .main-content {
+  display: flex;
+  flex-direction: column;
   grid-area: main-content;
   overflow-x: hidden;
   overflow-y: scroll;
 }
-.main-content .post-div {
+.main-content .post-div, .main-content .comment-div, .main-content .reply-div {
   border: solid var(--border);
   border-radius: 12px;
   background-color: var(--bg);
   margin: 10px;
   padding-left: 10px;
+  padding-bottom: 10px;
 }
-.main-content .post-div .first-row {
+.main-content .post-div .first-row, .main-content .comment-div .first-row, .main-content .reply-div .first-row {
   display: flex;
   align-items: center;
   height: 40px;
   gap: 15px;
   border-bottom: 1px solid var(--border);
 }
-.main-content .post-div .first-row .icon i {
+.main-content .post-div .first-row .icon i, .main-content .comment-div .first-row .icon i, .main-content .reply-div .first-row .icon i {
   font-size: 1.2em;
 }
-.main-content .post-div .first-row .published {
+.main-content .post-div .first-row .published, .main-content .comment-div .first-row .published, .main-content .reply-div .first-row .published {
   color: var(--text-muted);
 }
-.main-content .post-div .first-row .options {
+.main-content .post-div .first-row .options, .main-content .comment-div .first-row .options, .main-content .reply-div .first-row .options {
   margin-left: auto;
   margin-right: 5px;
   border: var(--border) solid;
@@ -212,7 +221,7 @@ body a, body i {
   cursor: pointer;
   position: relative;
 }
-.main-content .post-div .first-row .drop-down-menu {
+.main-content .post-div .first-row .drop-down-menu, .main-content .comment-div .first-row .drop-down-menu, .main-content .reply-div .first-row .drop-down-menu {
   display: none;
   width: 150px;
   height: 90px;
@@ -220,15 +229,15 @@ body a, body i {
   margin-left: auto;
   right: 50%;
 }
-.main-content .post-div .first-row .options:focus-within {
+.main-content .post-div .first-row .options:focus-within, .main-content .comment-div .first-row .options:focus-within, .main-content .reply-div .first-row .options:focus-within {
   cursor: default;
 }
-.main-content .post-div .first-row .options:focus-within .drop-down-menu {
+.main-content .post-div .first-row .options:focus-within .drop-down-menu, .main-content .comment-div .first-row .options:focus-within .drop-down-menu, .main-content .reply-div .first-row .options:focus-within .drop-down-menu {
   display: block;
   background-color: var(--light-bg);
   border: var(--border) solid;
 }
-.main-content .post-div .first-row .options:focus-within .drop-down-menu .option {
+.main-content .post-div .first-row .options:focus-within .drop-down-menu .option, .main-content .comment-div .first-row .options:focus-within .drop-down-menu .option, .main-content .reply-div .first-row .options:focus-within .drop-down-menu .option {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -241,14 +250,30 @@ body a, body i {
   border-bottom: var(--border) solid;
   padding-left: 6px;
 }
-.main-content .post-div .first-row .options:focus-within .drop-down-menu .option:last-of-type {
+.main-content .post-div .first-row .options:focus-within .drop-down-menu .option:last-of-type, .main-content .comment-div .first-row .options:focus-within .drop-down-menu .option:last-of-type, .main-content .reply-div .first-row .options:focus-within .drop-down-menu .option:last-of-type {
   border: none;
 }
-.main-content .post-div .first-row .options:focus-within .drop-down-menu .option:hover {
+.main-content .post-div .first-row .options:focus-within .drop-down-menu .option:hover, .main-content .comment-div .first-row .options:focus-within .drop-down-menu .option:hover, .main-content .reply-div .first-row .options:focus-within .drop-down-menu .option:hover {
   background-color: var(--lighter-bg);
 }
-.main-content .post-div .content {
+.main-content .post-div .content, .main-content .comment-div .content, .main-content .reply-div .content {
   padding: 10px 12px;
+}
+.main-content .post-div .interactions, .main-content .comment-div .interactions, .main-content .reply-div .interactions {
+  display: flex;
+  gap: 25px;
+}
+.main-content .post-div .interactions i, .main-content .comment-div .interactions i, .main-content .reply-div .interactions i {
+  font-size: 20px;
+  cursor: pointer;
+  padding: 4px;
+}
+.main-content .post-div .interactions form, .main-content .comment-div .interactions form, .main-content .reply-div .interactions form {
+  display: flex;
+  gap: 15px;
+}
+.main-content .post-div .interactions form input[type=radio], .main-content .comment-div .interactions form input[type=radio], .main-content .reply-div .interactions form input[type=radio] {
+  display: none;
 }
 
 .side-content {

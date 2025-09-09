@@ -1,0 +1,68 @@
+:root {
+  --dark-bg: hsl(0, 0%, 0%);
+  --bg: hsl(0, 0%, 5%);
+  --even-lighter-bg: hsl(0, 0%, 25%);
+  --lighter-bg: hsl(0, 0%, 17%);
+  --light-bg: hsl(0, 0%, 10%);
+  --text: hsl(0, 0%, 95%);
+  --text-muted: hsl(0, 0%, 70%);
+  --border: hsl(0, 0%, 20%);
+  --temporary-divs: hsl(0, 0%, 20%);
+}
+
+body.light {
+  --dark-bg: hsl(0, 0%, 90%);
+  --bg: hsl(0, 0%, 95%);
+  --light-bg: hsl(0, 0%, 100%);
+  --lighter-bg: white;
+  --text: hsl(0, 0%, 5%);
+  --text-muted: hsl(0, 0%, 30%);
+  --border: hsl(0, 0%, 60%);
+  --temporary-divs: hsl(0, 0%, 80%);
+}
+
+.profile-container {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 234px 1fr;
+  grid-template-rows: 40% 1fr;
+}
+.profile-container .profile {
+  font-size: 170px;
+  border: solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+  margin: 20px;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+.profile-container .info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  margin: 22px 15px 7px 0px;
+  padding-left: 15px;
+  border-left: solid var(--border);
+}
+.profile-container .info span {
+  font-size: 2em;
+}
+.profile-container .info .logout {
+  background-color: var(--even-lighter-bg);
+  color: var(--text);
+  font-size: 1.1em;
+  border: none;
+  border-radius: 45px;
+  height: 45px;
+  width: 100px;
+  cursor: pointer;
+  text-align: center;
+  padding: 9px;
+}
+
+.contributions {
+  margin: 12px;
+}/*# sourceMappingURL=profileStyle.css.map */

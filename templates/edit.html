@@ -2,13 +2,15 @@
 
 {%block head%}
     <title>BundleKey | Edit</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit.css') }}">
 {%endblock%}
 
 {%block main_content%}
+    <h1>Edit Your {{type | capitalize}} Here</h1>
     <form action="" method="POST">
         <textarea name="content" id="" placeholder="What's on your mind? ..."
-        style="width: 100%; height: 300px;" maxlength="200">{{content}}</textarea>
-        <input type="submit" name="" id="">
+         maxlength="200" minlength="5" required>{{content}}</textarea>
+        <input type="submit" name="" id="" class="submit">
     </form>
 {%endblock%}
 

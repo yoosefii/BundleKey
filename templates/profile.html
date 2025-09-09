@@ -1,0 +1,105 @@
+{%extends 'base.html'%}
+{%block head%}
+    <title>{{current_user.username}} Profile</title>
+    <link rel="stylesheet" href="../static/profileStyle.css">
+{%endblock%}
+{%block main_content%}
+    <div class="profile-container">
+        <div class="profile"><i class="fa-solid fa-user"></i></div>
+        <div class="info">
+            <span>User Id: #{{user.id}}</span>
+            <span>Username: {{user.username}}</span>
+            <span>Joined: {{joined}}</span>
+            {%if current_user.username == user.username%}
+            <div class="logout"><a href="{{url_for('logout')}}">Logout</a></div>
+            {%endif%}
+        </div>
+    </div>
+    <div class="contributions">
+        <div class="user-posts">
+            <h1>User Posts:</h1>
+            <div class="posts-container">
+            {%if not posts%}
+            <h2>No posts yet...</h2>
+            {%else%}
+                {%for post in posts%}
+                <div class="post-div" id="post-{{post.object.id}}">
+                    <div class="first-row">
+                        <span class="icon"><i class="fa-solid fa-user"></i></span>
+                        <span class="username"><a href="{{url_for('profile', user_id=post.object.poster_id)}}">{{post.object.poster_username}}</a></span>
+                        <span class="published">• {{post.time_ago}}</span>
+                        {%if current_user.username == post.object.poster_username%}
+                        <div class="options" tabindex="0">⋮
+                            <div class="drop-down-menu">
+                                <a href="{{url_for('edit', type='post', id=post.object.id)}}" class="option">Edit</a>
+                                <a href="{{url_for('delete', type='post', id=post.object.id)}}" class="option">Delete</a>
+                            </div>
+                        </div>
+                        {%endif%}
+                    </div>
+                    <div class="content">{{post.object.content | e | replace('\n', '<br>' | safe)}}</div>
+                    <div class="interactions">
+                        <form class="vote" action="{{url_for('vote', parent_type='post', parent_id=post.object.id)}}" method="POST">
+                            <label><input type="radio" name="vote" value="like"
+                                onchange="this.form.submit()"> {%if current_user.id in post.likes%} <i class="fa-solid fa-thumbs-up"></i>
+                                {%else%} <i class="fa-regular fa-thumbs-up"></i> {%endif%} {%if post.likes | length > 0 %} <span>{{post.likes | length}}</span> {%else%} <span></span> {%endif%} </label>
+                            <label><input type="radio" name="vote" value="dislike"
+                                onchange="this.form.submit()"> {%if current_user.id in post.dislikes%} <i class="fa-solid fa-thumbs-down"></i>
+                                {%else%} <i class="fa-regular fa-thumbs-down"></i> {%endif%} {%if post.dislikes | length > 0 %} <span>{{post.dislikes | length}}</span> {%else%} <span></span> {%endif%}</label>
+                        </form>
+                        <a href="{{url_for('comments_page', post_id=post.object.id)}}"><i class="fa-regular fa-comment-dots"></i></a>
+                    </div>
+                </div>
+                {%endfor%}
+            {%endif%}
+        </div>
+        </div>
+        <div class="user-comments">
+            <h1>User Comments:</h1>
+            <div class="comments-container">
+                {%if not comments%}
+                <h2>No comments yet...</h2>
+                {%else%}
+                    {%for comment in comments%}
+                    <div class="comment-div" id="comment-{{comment.object.id}}">
+                        <div class="first-row">
+                            <span class="icon"><i class="fa-solid fa-user"></i></span>
+                            <span class="username"><a href="{{url_for('profile', user_id=comment.object.commenter_id)}}">{{comment.object.commenter_username}}</a></span>
+                            <span class="published">• {{comment.time_ago}}</span>
+                            {%if current_user.username == comment.object.commenter_username%}
+                            <div class="options" tabindex="0">⋮
+                                <div class="drop-down-menu">
+                                    <a href="{{url_for('edit', type='comment', id=comment.object.id)}}" class="option">Edit</a>
+                                    <a href="{{url_for('delete', type='comment', id=comment.object.id)}}" class="option">Delete</a>
+                                </div>
+                            </div>
+                            {%endif%}
+                        </div>
+                        <div class="content">{{comment.object.content}}</div>
+                        <div class="interactions">
+                            <form class="vote" action="{{url_for('vote', parent_type='comment', parent_id=comment.object.id)}}" method="POST">
+                                <label><input type="radio" name="vote" value="like"
+                                    onchange="this.form.submit()"> {%if current_user.id in comment.likes%} <i class="fa-solid fa-thumbs-up"></i>
+                                    {%else%} <i class="fa-regular fa-thumbs-up"></i> {%endif%} {%if comment.likes | length > 0 %} <span>{{comment.likes | length}}</span> {%else%} <span></span> {%endif%} </label>
+                                <label><input type="radio" name="vote" value="dislike"
+                                    onchange="this.form.submit()"> {%if current_user.id in comment.dislikes%} <i class="fa-solid fa-thumbs-down"></i>
+                                    {%else%} <i class="fa-regular fa-thumbs-down"></i> {%endif%} {%if comment.dislikes | length > 0 %} <span>{{comment.dislikes | length}}</span> {%else%} <span></span> {%endif%}</label>
+                            </form>
+                            <a href="{{url_for('replies_page', comment_id=comment.object.id)}}"><i class="fa-regular fa-comment-dots"></i></a>
+                        </div>
+                    </div>
+                    {%endfor%}
+                {%endif%}
+            </div>
+        </div>
+    </div>
+{%endblock%}
+
+{%block side_content%}
+    <h2>DASHBOARD side content</h2>
+    <h2>DASHBOARD side content</h2>
+    <h2>DASHBOARD side content</h2>
+    <h2>DASHBOARD side content</h2>
+    <h2>DASHBOARD side content</h2>
+    <h2>DASHBOARD side content</h2>
+{%endblock%}

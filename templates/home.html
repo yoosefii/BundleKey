@@ -2,17 +2,30 @@
 
 {%block head%}
     <title>BundleKey | Home</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='home.css')}}">
 {%endblock%}
 
 {%block main_content%}
-    <h1>THIS IS HOME</h1>
-    <h1>THIS IS HOME</h1>
-    <h1>THIS IS HOME</h1>
-    <h1>THIS IS HOME</h1>
-    <h1>THIS IS HOME</h1>
-    <h1>THIS IS HOME</h1>
-    <h1>THIS IS HOME</h1>
-    <h1>THIS IS HOME</h1>
+    <div class="wrapper">
+        <h1 class="main-txt">Welcome to BundleKey</h1>
+        <h4 class="paragraph">
+            a website made by yyosef_ii for absolutely no reason <br>
+            you can navigate through the links to the left<br>
+            {% if not current_user.id %}
+            but first we recommend signing up to have the full experience
+        </h4>
+    <div class="getin"><a class="signup btn" href="{{url_for('register')}}">Sign Up</a> already have an account? <a class="login" href="{{url_for('login')}}">Log In</a></div>
+    </div>
+            {%else%}
+            have fun <br>
+            <br>
+            <br>
+            BundleKey is the name of this website,<br>
+            it doesn't have any meaning it's just what it is
+        </h4>
+    <!-- <div class="getin"><a class="signup btn" href="{{url_for('register')}}">Hi Up</a> already have an account? <a class="login" href="{{url_for('login')}}">Log In</a></div> -->
+    </div>
+    {%endif%}
 {%endblock%}
 
 {%block side_content%}

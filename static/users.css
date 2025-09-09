@@ -1,0 +1,51 @@
+:root {
+  --dark-bg: hsl(0, 0%, 0%);
+  --bg: hsl(0, 0%, 5%);
+  --even-lighter-bg: hsl(0, 0%, 25%);
+  --lighter-bg: hsl(0, 0%, 17%);
+  --light-bg: hsl(0, 0%, 10%);
+  --text: hsl(0, 0%, 95%);
+  --text-muted: hsl(0, 0%, 70%);
+  --border: hsl(0, 0%, 20%);
+  --temporary-divs: hsl(0, 0%, 20%);
+}
+
+body.light {
+  --dark-bg: hsl(0, 0%, 90%);
+  --bg: hsl(0, 0%, 95%);
+  --light-bg: hsl(0, 0%, 100%);
+  --lighter-bg: white;
+  --even-lighter-bg: hsl(0, 0%, 75%);
+  --text: hsl(0, 0%, 5%);
+  --text-muted: hsl(0, 0%, 30%);
+  --border: hsl(0, 0%, 60%);
+  --temporary-divs: hsl(0, 0%, 80%);
+}
+
+.user-box {
+  display: flex;
+  background: var(--bg);
+  border: var(--border) solid 4px;
+  border-radius: 20px;
+  margin: 14px;
+  margin-bottom: 4px;
+  padding: 20px;
+  height: 150px;
+  width: 400px;
+}
+.user-box .icon i {
+  font-size: 100px;
+  padding-right: 16px;
+  border-right: var(--border) solid;
+}
+.user-box .info {
+  padding-left: 13px;
+}
+.user-box .info .username {
+  font-size: 32px;
+  font-weight: bolder;
+  margin-bottom: 10px;
+}
+.user-box .info .time_ago {
+  color: var(--text-muted);
+}/*# sourceMappingURL=users.css.map */

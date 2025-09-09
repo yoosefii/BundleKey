@@ -1,6 +1,7 @@
 :root{    
     --dark-bg: hsl(0, 0%, 0%);
     --bg: hsl(0, 0%, 5%);
+    --even-lighter-bg: hsl(0, 0%, 25%);
     --lighter-bg: hsl(0, 0%, 17%);
     --light-bg: hsl(0, 0%, 10%);
     --text: hsl(0, 0%, 95%);
@@ -14,6 +15,7 @@ body.light {
     --bg: hsl(0, 0%, 95%);
     --light-bg: hsl(0, 0%, 100%);
     --lighter-bg: white;
+    --even-lighter-bg: hsl(0, 0%, 75%);
     --text: hsl(0, 0%, 5%);
     --text-muted: hsl(0, 0%, 30%);
     --border: hsl(0, 0%, 60%);
@@ -36,6 +38,7 @@ body.light {
   font-weight: 900;
   font-style: normal;
 }
+
 .lobster-regular {
   font-family: "Lobster", sans-serif;
   font-weight: 400;
@@ -82,6 +85,7 @@ body {
         height: 50%;
         display: flex;
         align-items: center;
+        font-size: 1.2em;
     }
     .links {
         height: 100%;
@@ -151,6 +155,7 @@ body {
     gap: 7px;
     padding: 2px 15px;
     border-bottom: 2px solid var(--border);
+    .add i {font-size: 26px;}
     .search-bar {
         border: var(--border) solid;
         border-radius: 17px;
@@ -180,15 +185,18 @@ body {
 
 .main-content {
     // border: solid green;
+    display: flex;
+    flex-direction: column;
     grid-area: main-content;
     overflow-x: hidden;
     overflow-y: scroll;
-    .post-div {
+    .post-div, .comment-div, .reply-div {
         border: solid var(--border);
         border-radius: 12px;
         background-color: var(--bg);
         margin: 10px;
         padding-left:10px;
+        padding-bottom: 10px;
         .first-row {
             display: flex;
             align-items: center;
@@ -246,8 +254,19 @@ body {
         .content {
             padding: 10px 12px;
         }
-        
+        .interactions {
+
+            display: flex;
+            gap: 25px;
+            i {font-size: 20px; cursor: pointer; padding: 4px;}
+            form {
+                input[type='radio'] {display: none;}
+                display: flex;
+                gap: 15px;
+            }
+        }
     }
+
 }
 
 .side-content {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lobster&display=swap" rel="stylesheet">
@@ -13,12 +13,12 @@
 <body class="">
     <div class="container">
         <div class="navigation-section">
-            <div class="logo"><a href="" class="lobster-regular">Bundle<br>Key</a></div>
+            <div class="logo"><a href=""><i class="fa-brands fa-web-awesome"></i></a></div>
             <div class="links">
                 <div><a href="/" class="home"><i class="fa-solid fa-house"></i></a></div>
                 <div><a href="{{url_for('feed')}}" class="discover"><i class="fa-solid fa-compass"></i></a></div>
-                <div><a href=""><i class="fa-solid fa-user-group"></i></a></div>
-                <div class="user"><a href="{{url_for('dashboard')}}"><i class="fa-solid fa-user"></i></a></div>
+                <div><a href="{{url_for('users')}}"><i class="fa-solid fa-user-group"></i></a></div>
+                <div class="user"><a href="{{url_for('profile')}}"><i class="fa-solid fa-user"></i></a></div>
             </div>
             <div class="settings">
                 <div class="options" tabindex="0"> <i class="fa-solid fa-bars"></i>
@@ -43,7 +43,7 @@
                 <input type="text" class="lato-black">
                 <a href=""><i class="fa-solid fa-magnifying-glass"></i></a>
             </div>
-            <a href="{{url_for('post')}}"><i class="fa-solid fa-circle-plus"></i></a>
+            <a href="{{url_for('post')}}" class="add"><i class="fa-solid fa-circle-plus"></i></a>
         </div>
         <div class="main-content">
             {%block main_content%}

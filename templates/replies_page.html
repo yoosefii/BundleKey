@@ -1,0 +1,102 @@
+{%extends 'base.html'%}
+
+{%block head%}
+    <title>Post Comments</title>
+    <link rel="stylesheet" href="../static/commentsStyle.css">
+{%endblock%}
+
+{%block main_content%}
+    <div class="post-div">
+        <div class="first-row">
+            <span class="icon"><i class="fa-solid fa-user"></i></span>
+            <span class="username"><a href="{{url_for('profile', user_id=post.object.poster_id)}}">{{post.object.poster_username}}</a></span>
+            <span class="published">• {{post.time_ago}}</span>
+            {%if current_user.username == post.object.poster_username%}
+            <div class="options" tabindex="0">⋮
+                <div class="drop-down-menu">
+                    <a href="{{url_for('edit', type='post', id=post.object.id)}}" class="option">Edit</a>
+                    <a href="{{url_for('delete', type='post', id=post.object.id)}}" class="option">Delete</a>
+                </div>
+            </div>
+            {%endif%}
+        </div>
+        <div class="content">{{post.object.content | e | replace('\n', '<br>' | safe)}}</div>
+        <div class="interactions">
+            <form class="vote" action="{{url_for('vote', parent_type='post', parent_id=post.object.id)}}" method="POST">
+                <label><input type="radio" name="vote" value="like"
+                    onchange="this.form.submit()"> {%if current_user.id in post.likes%} <i class="fa-solid fa-thumbs-up"></i>
+                    {%else%} <i class="fa-regular fa-thumbs-up"></i> {%endif%} {%if post.likes | length > 0 %} <span>{{post.likes | length}}</span> {%else%} <span></span> {%endif%} </label>
+                <label><input type="radio" name="vote" value="dislike"
+                    onchange="this.form.submit()"> {%if current_user.id in post.dislikes%} <i class="fa-solid fa-thumbs-down"></i>
+                    {%else%} <i class="fa-regular fa-thumbs-down"></i> {%endif%} {%if post.dislikes | length > 0 %} <span>{{post.dislikes | length}}</span> {%else%} <span></span> {%endif%}</label>
+            </form>
+        </div>
+    </div>
+    <div class="comments-container">
+        <div class="comment-div" id="comment-{{comment.object.id}}">
+            <div class="first-row">
+                <span class="icon"><i class="fa-solid fa-user"></i></span>
+                <span class="username"><a href="{{url_for('profile', user_id=comment.object.commenter_id)}}">{{comment.object.commenter_username}}</a></span>
+                <span class="published">• {{comment.time_ago}}</span>
+                {%if current_user.username == comment.object.commenter_username%}
+                <div class="options" tabindex="0">⋮
+                    <div class="drop-down-menu">
+                        <a href="{{url_for('edit', type='comment', id=comment.object.id)}}" class="option">Edit</a>
+                        <a href="{{url_for('delete', type='comment', id=comment.object.id)}}" class="option">Delete</a>
+                    </div>
+                </div>
+                {%endif%}
+            </div>
+            <div class="content">{{comment.object.content}}</div>
+            <div class="interactions">
+                <form class="vote" action="{{url_for('vote', parent_type='comment', parent_id=comment.object.id)}}" method="POST">
+                    <label><input type="radio" name="vote" value="like"
+                        onchange="this.form.submit()"> {%if current_user.id in comment.likes%} <i class="fa-solid fa-thumbs-up"></i>
+                        {%else%} <i class="fa-regular fa-thumbs-up"></i> {%endif%} {%if comment.likes | length > 0 %} <span>{{comment.likes | length}}</span> {%else%} <span></span> {%endif%} </label>
+                    <label><input type="radio" name="vote" value="dislike"
+                        onchange="this.form.submit()"> {%if current_user.id in comment.dislikes%} <i class="fa-solid fa-thumbs-down"></i>
+                        {%else%} <i class="fa-regular fa-thumbs-down"></i> {%endif%} {%if comment.dislikes | length > 0 %} <span>{{comment.dislikes | length}}</span> {%else%} <span></span> {%endif%}</label>
+                </form>
+        </div>
+    </div>
+    <div class="replies-container">
+        {%if current_user%}
+        <form class="reply" action="{{url_for('add_reply', comment_id=comment.object.id, post_id=post.object.id)}}" method="POST">
+            <input type="text" name="content" id="" placeholder="Reply with whatever you want ..." maxlength="300" required>
+            <input type="submit" name="" id="" class="submit" value="Post">
+        </form>
+        {%endif%}
+        {%if not replies%}
+        <h2>No replies yet... be the first!</h2>
+        {%else%}
+            {%for reply in replies%}
+            <div class="reply-div" id="reply-{{reply.object.id}}">
+                <div class="first-row">
+                    <span class="icon"><i class="fa-solid fa-user"></i></span>
+                    <span class="username"><a href="{{url_for('profile', user_id=reply.object.replyer_id)}}">{{reply.object.replyer_username}}</a></span>
+                    <span class="published">• {{reply.time_ago}}</span>
+                    {%if current_user.username == reply.object.replyer_username%}
+                    <div class="options" tabindex="0">⋮
+                        <div class="drop-down-menu">
+                            <a href="{{url_for('edit', type='reply', id=reply.object.id)}}" class="option">Edit</a>
+                            <a href="{{url_for('delete', type='reply', id=reply.object.id)}}" class="option">Delete</a>
+                        </div>
+                    </div>
+                    {%endif%}
+                </div>
+                <div class="content">{{reply.object.content}}</div>
+                <div class="interactions">
+                    <form class="vote" action="{{url_for('vote', parent_type='reply', parent_id=reply.object.id)}}" method="POST">
+                        <label><input type="radio" name="vote" value="like"
+                            onchange="this.form.submit()"> {%if current_user.id in reply.likes%} <i class="fa-solid fa-thumbs-up"></i>
+                            {%else%} <i class="fa-regular fa-thumbs-up"></i> {%endif%} {%if reply.likes | length > 0 %} <span>{{reply.likes | length}}</span> {%else%} <span></span> {%endif%} </label>
+                        <label><input type="radio" name="vote" value="dislike"
+                            onchange="this.form.submit()"> {%if current_user.id in reply.dislikes%} <i class="fa-solid fa-thumbs-down"></i>
+                            {%else%} <i class="fa-regular fa-thumbs-down"></i> {%endif%} {%if reply.dislikes | length > 0 %} <span>{{reply.dislikes | length}}</span> {%else%} <span></span> {%endif%}</label>
+                    </form>
+                </div>
+            </div>
+            {%endfor%}
+        {%endif%}
+    </div>
+{%endblock%}
