@@ -1,0 +1,55 @@
+:root{    
+    --dark-bg: hsl(0, 0%, 0%);
+    --bg: hsl(0, 0%, 5%);
+    --even-lighter-bg: hsl(0, 0%, 25%);
+    --lighter-bg: hsl(0, 0%, 17%);
+    --light-bg: hsl(0, 0%, 10%);
+    --text: hsl(0, 0%, 95%);
+    --text-muted: hsl(0, 0%, 70%);
+    --border: hsl(0, 0%, 20%);
+    --temporary-divs: hsl(0, 0%, 20%);
+}
+
+body.light {
+    --dark-bg: hsl(0, 0%, 90%);
+    --bg: hsl(0, 0%, 95%);
+    --light-bg: hsl(0, 0%, 100%);
+    --lighter-bg: white;
+    --even-lighter-bg: hsl(0, 0%, 75%);
+    --text: hsl(0, 0%, 5%);
+    --text-muted: hsl(0, 0%, 30%);
+    --border: hsl(0, 0%, 60%);
+    --temporary-divs: hsl(0, 0%, 80%);
+}
+
+.main-content {
+    padding: 10px;
+    form {
+        display: flex;
+        flex-direction: column;
+        textarea {
+        background-color: var(--bg);
+        color: var(--text);
+        border: var(--border) solid;
+        margin: 15px;
+        padding: 20px;
+        width: 90%;
+        height: 300px;
+        border-radius: 30px;
+        resize: none;
+        }
+        textarea:focus {outline: none;}
+        .submit {
+            background-color: var(--even-lighter-bg);
+            color: var(--text);
+            font-size: 1.1em;
+            border: none;
+            border-radius: 45px;
+            height: 45px;
+            width: 100px;
+            margin-right: 50px;
+            align-self: end;
+            cursor: pointer;
+        }
+    }
+}

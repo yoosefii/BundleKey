@@ -1,0 +1,15 @@
+{%extends 'base.html'%}
+
+{%block head%}
+    <title>BundleKey | Post</title>
+    <link rel="stylesheet" href="../static/edit.css">
+{%endblock%}
+
+{%block main_content%}
+    <h1>Create Your Post Here</h1>
+    <form action="{{url_for('post')}}" method="POST">
+        <textarea name="content" id="" placeholder="What's on your mind? ..."
+         maxlength="200" minlength="5" required></textarea>
+        <input type="submit" name="" id="" class="submit">
+    </form>
+{%endblock%}

@@ -1,0 +1,96 @@
+
+// Login and Register page css:
+:root{    
+    --dark-bg: hsl(0, 0%, 0%);
+    --bg: hsl(0, 0%, 5%);
+    --even-lighter-bg: hsl(0, 0%, 25%);
+    --lighter-bg: hsl(0, 0%, 17%);
+    --light-bg: hsl(0, 0%, 10%);
+    --text: hsl(0, 0%, 95%);
+    --text-muted: hsl(0, 0%, 70%);
+    --border: hsl(0, 0%, 20%);
+    --temporary-divs: hsl(0, 0%, 20%);
+}
+
+body.light {
+    --dark-bg: hsl(0, 0%, 90%);
+    --bg: hsl(0, 0%, 95%);
+    --light-bg: hsl(0, 0%, 100%);
+    --lighter-bg: hsl(0, 0%, 64%);
+    --text: hsl(0, 0%, 5%);
+    --text-muted: hsl(0, 0%, 30%);
+    --border: hsl(0, 0%, 60%);
+    --temporary-divs: hsl(0, 0%, 80%);
+}
+
+.main-content {
+    form{
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 100px 1fr 1fr 1fr;
+        grid-template-areas: 'title title title'
+                            'username-label username username'
+                            'password-label password password'
+                            'link link submit';
+        align-items: center;
+        justify-items: center;
+        label {
+            color: var(--text);
+            justify-self: end;
+            font-size: 1.7em;
+            margin-right: 5px;
+        }
+        input:-webkit-autofill {
+        background-color: var(--even-lighter-bg) !important;
+        box-shadow: 0 0 0 1000px var(--even-lighter-bg) inset !important;
+        -webkit-text-fill-color: var(--text) !important;
+        }
+        input:not(.submit) {
+            justify-self: start;
+            background-color: var(--even-lighter-bg);
+            color: var(--text);
+            font-size: 1.3em;
+            border: none;
+            border-radius: 45px;
+            height: 45px;
+            width: 70%;
+            min-width: 200px;
+            padding: 0px 14px;
+            margin-left: 10px;
+        }
+        input:not(.submit):focus {outline: none;}
+        .title {
+            grid-area: title;
+            font-size: 3em;
+            align-self: end;
+        }
+        .username-label {grid-area: username-label; align-self: end; margin-bottom: 7px;}
+        .password-label {grid-area: password-label;}
+        .username {grid-area: username; align-self: end;}
+        .password {grid-area: password;}
+        .link {
+            grid-area: link;
+            align-self: start;
+            font-weight: lighter;
+            margin-top: 6px;
+            a{
+                text-decoration: underline;
+                color: var(--text-muted);
+            }
+        }
+        .submit {
+            grid-area: submit;
+            background-color: var(--even-lighter-bg);
+            color: var(--text);
+            font-size: 1.1em;
+            border: none;
+            border-radius: 45px;
+            height: 45px;
+            width: 100px;
+            align-self: start;
+            justify-self: start;
+            cursor: pointer;
+        }
+    }
+}

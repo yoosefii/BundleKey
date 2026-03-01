@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+{%block head%}
+    <title>Login page</title>
+    <link rel="stylesheet" href="../static/loginStyle.css">
+{%endblock%}
+{%block main_content%}
+    {%for notif in notifs %}
+    <div class="notif">
+        <div class="content">
+            <a href="{{notif.link}}">
+            <b>{{notif.sender_obj.username}}</b> has {{notif.obj.action_type}}ed to you, <i>{{notif.time_ago}}</i>
+            </a>
+            <!-- ----------------
+            notif_id: {{notif.obj.id}}
+            sender_id: {{notif.obj.sender_id}}
+            from (aka sender username): {{notif.sender_obj.username}}
+            receiver_id: {{notif.obj.receiver_id}}
+            notif_type: {{notif.obj.action_type}}
+            published: {{notif.time_ago}}
+            link: <a href="{{notif.link}}">HERE MF</a>
+            ---------------- -->
+        </div>
+    </div>
+    {%endfor%}
+{%endblock%}

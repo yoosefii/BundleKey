@@ -1,0 +1,74 @@
+:root {
+  --dark-bg: hsl(0, 0%, 0%);
+  --bg: hsl(0, 0%, 5%);
+  --even-lighter-bg: hsl(0, 0%, 25%);
+  --lighter-bg: hsl(0, 0%, 17%);
+  --light-bg: hsl(0, 0%, 10%);
+  --text: hsl(0, 0%, 95%);
+  --text-muted: hsl(0, 0%, 70%);
+  --border: hsl(0, 0%, 20%);
+  --temporary-divs: hsl(0, 0%, 20%);
+}
+
+body.light {
+  --dark-bg: hsl(0, 0%, 90%);
+  --bg: hsl(0, 0%, 95%);
+  --light-bg: hsl(0, 0%, 100%);
+  --lighter-bg: white;
+  --even-lighter-bg: hsl(0, 0%, 75%);
+  --text: hsl(0, 0%, 5%);
+  --text-muted: hsl(0, 0%, 30%);
+  --border: hsl(0, 0%, 60%);
+  --temporary-divs: hsl(0, 0%, 80%);
+}
+
+.main-content form.comment, .main-content form.reply {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  grid-template-rows: 1fr;
+  grid-template-areas: "input submit";
+  margin: 0px;
+}
+.main-content input:-webkit-autofill {
+  background: linear-gradient(to right, var(--bg), var(--dark-bg)) !important;
+  box-shadow: 0 0 0 1000px var(--dark-bg) inset !important;
+  -webkit-text-fill-color: var(--text) !important;
+}
+.main-content input:not(.submit)[type=text] {
+  grid-area: input;
+  background: linear-gradient(to right, var(--bg), var(--dark-bg));
+  color: var(--text);
+  font-size: 1.3em;
+  border: none;
+  border-left: var(--border) solid;
+  height: 45px;
+  width: 99%;
+  padding: 0px 14px;
+  margin: 10px;
+}
+.main-content input:not(.submit)[type=text]:focus {
+  outline: none;
+}
+.main-content .submit {
+  grid-area: submit;
+  background-color: var(--dark-bg);
+  color: var(--text);
+  border: var(--border) solid;
+  font-size: 1.1em;
+  border-radius: 45px;
+  height: 45px;
+  width: 100px;
+  align-self: start;
+  justify-self: start;
+  cursor: pointer;
+  align-self: center;
+  justify-self: center;
+}
+.main-content .comments-container, .main-content .replies-container {
+  margin-left: 30px;
+  border-left: var(--border) solid;
+  padding-left: 10px;
+}
+.main-content .comments-container h2, .main-content .replies-container h2 {
+  padding: 12px;
+}/*# sourceMappingURL=commentsStyle.css.map */

@@ -1,0 +1,18 @@
+{%extends 'base.html'%}
+
+{%block head%}
+    <title>BundleKey | Users</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='users.css')}}">
+{%endblock%}
+
+{%block main_content%}
+    {% for user in users %}
+        <div class="user-box">
+            <div class="icon"><i class="fa-solid fa-user"></i></div>
+            <div class="info">
+                <div class="username"><a href="{{url_for('profile', user_id=user.object.id)}}">{{user.object.username}}</a></div>
+                <div class="time_ago">joined {{user.time_ago}}</div>
+            </div>
+        </div>
+    {%endfor%}
+{%endblock%}
